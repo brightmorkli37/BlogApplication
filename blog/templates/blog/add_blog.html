@@ -1,0 +1,76 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="add-post-header mt-4 mb-4" style="text-align: center;">
+    <h1>Write new blog post</h1>
+</div>
+
+<!-- <form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+{{form.as_p}}
+<button type=>Publish</button>
+</form> -->
+
+<div class="container">
+    <div class="col-md-6 offset-md-3">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }}
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="title" class="form-label">Post title</label>
+                    <input type="text" name="title" class="form-control">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="cover_image" class="form-label">Cover Image</label>
+                    <input type="file" name="cover_image" class="form-control">
+                </div>
+                <div class="col">
+                    <label for="date_published" class="form-label">Date</label>
+                    <input type="datetime-local" name="date_published" class="form-control">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="status" class="form-label">Status</label>
+                    <select name="status" class="form-control">
+                        <option value="">--select--</option>
+                        <option value="draft">draft</option>
+                        <option value="published">published</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="category" class="form-label">Category</label>
+                    <select name="category" class="form-control">
+                        <option value="">--select--</option>
+                        {% for each_category in categories %}
+                           <option value="{{each_category.id}}">{{each_category}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="body" class="control-label">Post body</label>
+                    <!-- <textarea name="body" class="form-control" cols="30" rows="10"></textarea> -->
+                    {{form.body}}
+                </div>
+            </div>
+            
+            <div class="row mb-3 mt-3">
+                <div class="col">
+                    <div class="d-grid gap-2 col-4 mx-auto">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+<!-- <p>lorem*1</p> -->
